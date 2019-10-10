@@ -1,0 +1,11 @@
+entity,state,org,affect,date,type,location
+"Women's Care Florida, LLC",FL,Healthcare provider,"528,188",9/25/19,hacking/IT Incident,Network server
+Sarrell Dental,AL,Healthcare provider,"391,472",9/12/19,hacking/IT Incident,Network server
+Premier Family Medical,UT,Healthcare provider,"320,000",9/7/19,hacking/IT Incident,Network server
+Magellan Healthcare,MD,Business associate,"55,637",9/17/19,hacking/IT Incident,Email
+CHI Health Orthopedics Clinic -Lakeside,NE,Healthcare provider,"48,000",9/30/19,hacking/IT Incident,"Desktop computer, electronic medical record, network server"
+Kilgore Vision Center,AR,Healthcare provider,"40,000",9/13/19,hacking/IT Incident,Network server
+Sweetser,ME,Healthcare provider,"22,000",9/13/19,hacking/IT Incident,Email
+Shore Specialty Consultants Pulmonology Group,NJ,Healthcare provider,"9,700",9/6/19,hacking/IT Incident,"Desktop computer, network server"
+Goshen Health,IN,Healthcare provider,"9,160",9/30/19,hacking/IT Incident,Email
+"Medico of South Carolina, Inc.",SC,Business associate,"6,489",9/17/19,unauthorized access/disclosure,Network server
