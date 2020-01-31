@@ -91,10 +91,10 @@ colnames(dflist) <- c('entity','state','org','affect','date','type','location')
 
 
 # filter for the month we want, sort by top number of indv affected and slice the top ten
-dflist <- filter(dflist, (date >= '2019-12-01') & (date <= '2019-12-31') ) %>% arrange(desc(affect)) %>% slice(1:10)
+dflist <- filter(dflist, (date >= '2019-11-01') & (date <= '2019-11-30') ) %>% arrange(desc(affect)) %>% slice(1:10)
+
+
 
 # save to csv 
 write_csv(dflist,'csv/topten.csv')
 
-dflist2 <- filter(dflist, (date >= '2019-10-01') & (date <= '2019-10-31') ) %>% arrange(desc(affect)) %>% slice(1:10)
-write_csv(dflist2,'csv/topten_oct.csv')

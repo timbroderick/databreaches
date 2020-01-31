@@ -1,0 +1,77 @@
+location,count,proportion
+Desktop Computer,164,6.4
+"Desktop Computer, Electronic Medical Record",7,0.3
+"Desktop Computer, Electronic Medical Record, Email, Laptop, Network Server",1,0
+"Desktop Computer, Electronic Medical Record, Email, Laptop, Network Server, Other Portable Electronic Device",1,0
+"Desktop Computer, Electronic Medical Record, Email, Laptop, Network Server, Other Portable Electronic Device, Paper/Films",1,0
+"Desktop Computer, Electronic Medical Record, Email, Laptop, Network Server, Other, Other Portable Electronic Device",1,0
+"Desktop Computer, Electronic Medical Record, Email, Laptop, Network Server, Other, Other Portable Electronic Device, Paper/Films",2,0.1
+"Desktop Computer, Electronic Medical Record, Email, Laptop, Other Portable Electronic Device",1,0
+"Desktop Computer, Electronic Medical Record, Email, Laptop, Other, Other Portable Electronic Device, Paper/Films",1,0
+"Desktop Computer, Electronic Medical Record, Email, Network Server",2,0.1
+"Desktop Computer, Electronic Medical Record, Email, Network Server, Other, Other Portable Electronic Device, Paper/Films",1,0
+"Desktop Computer, Electronic Medical Record, Email, Network Server, Paper/Films",1,0
+"Desktop Computer, Electronic Medical Record, Laptop",3,0.1
+"Desktop Computer, Electronic Medical Record, Laptop, Network Server",1,0
+"Desktop Computer, Electronic Medical Record, Network Server",7,0.3
+"Desktop Computer, Electronic Medical Record, Network Server, Other Portable Electronic Device, Paper/Films",1,0
+"Desktop Computer, Electronic Medical Record, Other",1,0
+"Desktop Computer, Email",5,0.2
+"Desktop Computer, Email, Laptop, Network Server",7,0.3
+"Desktop Computer, Email, Laptop, Network Server, Other Portable Electronic Device",1,0
+"Desktop Computer, Email, Laptop, Network Server, Other Portable Electronic Device, Paper/Films",1,0
+"Desktop Computer, Email, Laptop, Network Server, Other, Other Portable Electronic Device",1,0
+"Desktop Computer, Email, Network Server",3,0.1
+"Desktop Computer, Laptop",16,0.6
+"Desktop Computer, Laptop, Network Server",3,0.1
+"Desktop Computer, Laptop, Network Server, Other Portable Electronic Device",1,0
+"Desktop Computer, Laptop, Other Portable Electronic Device",5,0.2
+"Desktop Computer, Laptop, Other, Other Portable Electronic Device",1,0
+"Desktop Computer, Laptop, Paper/Films",1,0
+"Desktop Computer, Network Server",27,1.1
+"Desktop Computer, Network Server, Other, Other Portable Electronic Device",1,0
+"Desktop Computer, Network Server, Paper/Films",1,0
+"Desktop Computer, Other",3,0.1
+"Desktop Computer, Other Portable Electronic Device",4,0.2
+"Desktop Computer, Other Portable Electronic Device, Paper/Films",1,0
+"Desktop Computer, Other, Other Portable Electronic Device",1,0
+"Desktop Computer, Other, Other Portable Electronic Device, Paper/Films",2,0.1
+"Desktop Computer, Paper/Films",9,0.4
+Electronic Medical Record,107,4.2
+"Electronic Medical Record, Email",1,0
+"Electronic Medical Record, Email, Laptop",1,0
+"Electronic Medical Record, Email, Laptop, Network Server",1,0
+"Electronic Medical Record, Email, Laptop, Paper/Films",1,0
+"Electronic Medical Record, Laptop",3,0.1
+"Electronic Medical Record, Laptop, Network Server, Other, Other Portable Electronic Device",1,0
+"Electronic Medical Record, Network Server",16,0.6
+"Electronic Medical Record, Other",7,0.3
+"Electronic Medical Record, Other, Other Portable Electronic Device",2,0.1
+"Electronic Medical Record, Paper/Films",9,0.4
+Email,339,13.3
+"Email, Laptop",3,0.1
+"Email, Laptop, Network Server",2,0.1
+"Email, Laptop, Other Portable Electronic Device",2,0.1
+"Email, Laptop, Paper/Films",1,0
+"Email, Network Server",5,0.2
+"Email, Network Server, Other Portable Electronic Device",1,0
+"Email, Other",3,0.1
+"Email, Other Portable Electronic Device",5,0.2
+"Email, Paper/Films",1,0
+Laptop,326,12.8
+"Laptop, Network Server",5,0.2
+"Laptop, Other",2,0.1
+"Laptop, Other Portable Electronic Device",18,0.7
+"Laptop, Other Portable Electronic Device, Paper/Films",2,0.1
+"Laptop, Paper/Films",12,0.5
+Network Server,409,16
+"Network Server, Other",9,0.4
+"Network Server, Other Portable Electronic Device",1,0
+"Network Server, Other, Paper/Films",1,0
+"Network Server, Paper/Films",2,0.1
+Other,217,8.5
+Other Portable Electronic Device,140,5.5
+"Other Portable Electronic Device, Paper/Films",3,0.1
+"Other, Other Portable Electronic Device",47,1.8
+"Other, Paper/Films",9,0.4
+Paper/Films,550,21.5

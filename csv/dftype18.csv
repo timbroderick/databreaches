@@ -1,0 +1,32 @@
+type,count,proportion
+Hacking/IT Incident,572,22.4
+"Hacking/IT Incident, Improper Disposal, Loss, Other, Theft, Unauthorized Access/Disclosure, Unknown",1,0
+"Hacking/IT Incident, Other",2,0.1
+"Hacking/IT Incident, Other, Unauthorized Access/Disclosure",1,0
+"Hacking/IT Incident, Theft",1,0
+"Hacking/IT Incident, Theft, Unauthorized Access/Disclosure",2,0.1
+"Hacking/IT Incident, Unauthorized Access/Disclosure",8,0.3
+Improper Disposal,75,2.9
+"Improper Disposal, Loss",3,0.1
+"Improper Disposal, Loss, Theft",3,0.1
+"Improper Disposal, Theft",1,0
+"Improper Disposal, Theft, Unauthorized Access/Disclosure",1,0
+"Improper Disposal, Unauthorized Access/Disclosure",1,0
+Loss,156,6.1
+"Loss, Other",2,0.1
+"Loss, Other, Theft",1,0
+"Loss, Theft",15,0.6
+"Loss, Theft, Unauthorized Access/Disclosure, Unknown",1,0
+"Loss, Unauthorized Access/Disclosure",3,0.1
+"Loss, Unauthorized Access/Disclosure, Unknown",1,0
+"Loss, Unknown",1,0
+Other,76,3
+"Other, Theft",3,0.1
+"Other, Theft, Unauthorized Access/Disclosure",2,0.1
+"Other, Unauthorized Access/Disclosure",7,0.3
+"Other, Unknown",2,0.1
+Theft,853,33.4
+"Theft, Unauthorized Access/Disclosure",25,1
+Unauthorized Access/Disclosure,724,28.3
+Unknown,10,0.4
+,1,0
