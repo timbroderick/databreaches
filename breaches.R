@@ -24,15 +24,15 @@ options("scipen" = 10) # this makes sure big numbers don't devolve into scientif
 
 # check the file names. This is for a mac. Windows may be different
 # learn more at: https://stat.ethz.ch/R-manual/R-devel/library/base/html/list.files.html
-files <- list.files("csv/") 
+files <- list.files("1_data/") 
 for (file in files) {
   print(paste(file),quote=FALSE) # this should print the filenames that are in the csv dir
 }
 
 # Reading these dates in requires a special format: %m/%d/%Y
 # Note the capitol Y for years as 0000
-dfopen <- read_csv("csv/breach_report.csv", col_types = cols("Breach Submission Date" = col_date(format = "%m/%d/%Y")), na = "")
-dfclosed <- read_csv("csv/breach_report(1).csv", col_types = cols("Breach Submission Date" = col_date(format = "%m/%d/%Y")), na = "")
+dfopen <- read_csv("1_data/breach_report.csv", col_types = cols("Breach Submission Date" = col_date(format = "%m/%d/%Y")), na = "")
+dfclosed <- read_csv("1_data/breach_report(1).csv", col_types = cols("Breach Submission Date" = col_date(format = "%m/%d/%Y")), na = "")
 # add in the status just in case
 dfopen$status <- "open"
 dfclosed$status <- "closed"
@@ -41,7 +41,7 @@ dfclosed$status <- "closed"
 df <- rbind(dfopen, dfclosed)
 
 # saving combined
-write_csv(df,'csv/combined.csv')
+write_csv(df,'2_output/combined.csv')
 
 head(df)
 
@@ -80,7 +80,7 @@ tail(dfgroup)
 
 
 # save to csv 
-write_csv(dfgroup,'csv/update.csv')
+write_csv(dfgroup,'2_output/update.csv')
 
 #------ 
 # Finally, we create our top ten list for the month we're examining
@@ -91,10 +91,8 @@ colnames(dflist) <- c('entity','state','org','affect','date','type','location')
 
 
 # filter for the month we want, sort by top number of indv affected and slice the top ten
-dflist <- filter(dflist, (date >= '2019-12-01') & (date <= '2019-12-31') ) %>% arrange(desc(affect)) %>% slice(1:10)
+dflist <- filter(dflist, (date >= '2020-01-01') & (date <= '2020-01-31') ) %>% arrange(desc(affect)) %>% slice(1:10)
 
 # save to csv 
-write_csv(dflist,'csv/topten.csv')
+write_csv(dflist,'2_output/topten.csv')
 
-dflist2 <- filter(dflist, (date >= '2019-10-01') & (date <= '2019-10-31') ) %>% arrange(desc(affect)) %>% slice(1:10)
-write_csv(dflist2,'csv/topten_oct.csv')

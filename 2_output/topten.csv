@@ -1,0 +1,11 @@
+entity,state,org,affect,date,type,location
+PIH Health,CA,healthcare provider,199548,1/10/20,hacking/IT Incident,Email
+Douglas County Hospital dba Alomere Health,MN,healthcare provider,49351,1/3/20,hacking/IT Incident,Email
+"InterMed, PA",ME,healthcare provider,33000,1/8/20,hacking/IT Incident,Email
+Fondren Orthopedic Group L.L.P.,TX,healthcare provider,30049,1/17/20,hacking/IT Incident,Network server
+"Native American Rehabilitation Association of the Northwest, Inc.",OR,healthcare provider,25187,1/3/20,hacking/IT Incident,Email
+Hospital Sisters Health System,IL,healthcare provider,16167,1/31/20,hacking/IT Incident,Email
+Spectrum Healthcare Partners,ME,healthcare provider,11308,1/10/20,hacking/IT Incident,Email
+Original Medicare,MD,health plan,9965,1/31/20,unauthorized access/disclosure,Other
+"Lawrenceville Internal Medicine Assoc, LLC",NJ,healthcare provider,8031,1/2/20,unauthorized access/disclosure,Email
+"Manchester Ophthalmology, LLC",CT,healthcare provider,6846,1/24/20,hacking/IT Incident,Network server
