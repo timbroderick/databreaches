@@ -12,7 +12,7 @@
 # you'll want to click the third icon, "Export as CSV"
 
 # this script assumes that you've downloaded and placed those two files
-# in a folder called csv within the same overall folder as this script
+# in a folder called 1_data within the same overall folder as this script
 
 # set the working directory
 setwd("~/anaconda3/envs/notebook/databreaches")
@@ -24,15 +24,15 @@ options("scipen" = 10) # this makes sure big numbers don't devolve into scientif
 
 # check the file names. This is for a mac. Windows may be different
 # learn more at: https://stat.ethz.ch/R-manual/R-devel/library/base/html/list.files.html
-files <- list.files("csv/")
+files <- list.files("1_data/")
 for (file in files) {
   print(paste(file),quote=FALSE) # this should print the filenames that are in the csv dir
 }
 
 # Reading these dates in requires a special format: %m/%d/%Y
 # Note the capitol Y for years as 0000
-dfopen <- read_csv("csv/breach_report.csv", col_types = cols("Breach Submission Date" = col_date(format = "%m/%d/%Y")), na = "")
-dfclosed <- read_csv("csv/breach_report(1).csv", col_types = cols("Breach Submission Date" = col_date(format = "%m/%d/%Y")), na = "")
+dfopen <- read_csv("1_data/breach_report.csv", col_types = cols("Breach Submission Date" = col_date(format = "%m/%d/%Y")), na = "")
+dfclosed <- read_csv("1_data/breach_report(1).csv", col_types = cols("Breach Submission Date" = col_date(format = "%m/%d/%Y")), na = "")
 # add in the status just in case we want to examine open v closed at some point
 dfopen$status <- "open"
 dfclosed$status <- "closed"
@@ -87,4 +87,4 @@ dfjoin2$locate_perctotal <- round( (dfjoin2$n.y / dfjoin2$number_breaches) * 100
 
 # rename the columns to be more reader friendly, then save as csv
 colnames(dfjoin2) <- c("Year","Number of breaches","Individuals affected","Top breach by type","type (count)","type (as percent of all breaches)","top breach by location","location (count)","location (as percent of all breaches)")
-write_csv(dfjoin2,'csv/breaches_byyear.csv')
+write_csv(dfjoin2,'2_output/breaches_byyear.csv')

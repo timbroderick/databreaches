@@ -7,13 +7,13 @@ options("scipen" = 10)
 
 # check the file names. This is for a mac. Windows may be different
 # learn more at: https://stat.ethz.ch/R-manual/R-devel/library/base/html/list.files.html
-files <- list.files("csv/") 
+files <- list.files("1_data/") 
 for (file in files) {
   print(paste(file),quote=FALSE) # this should print the filenames that are in the csv dir
 }
 
-dfopen <- read_csv("csv/breach_report.csv", col_types = cols("Breach Submission Date" = col_date(format = "%m/%d/%Y")), na = "")
-dfclosed <- read_csv("csv/breach_report(1).csv", col_types = cols("Breach Submission Date" = col_date(format = "%m/%d/%Y")), na = "")
+dfopen <- read_csv("1_data/breach_report.csv", col_types = cols("Breach Submission Date" = col_date(format = "%m/%d/%Y")), na = "")
+dfclosed <- read_csv("1_data/breach_report(1).csv", col_types = cols("Breach Submission Date" = col_date(format = "%m/%d/%Y")), na = "")
 # add in the status just in case
 dfopen$status <- "open"
 dfclosed$status <- "closed"
@@ -92,7 +92,7 @@ dflocate18 <- df18 %>%
             proportion = round( (count / nrow(.) )*100,1)
   )
 # save the file
-write_csv(dflocate18,'csv/dflocate18.csv', na = '')
+write_csv(dflocate18,'2_output/dflocate18.csv', na = '')
 
 
 
