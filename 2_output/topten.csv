@@ -1,11 +1,11 @@
-entity,state,org,affect,date,type,location
-PIH Health,CA,healthcare provider,199548,1/10/20,hacking/IT Incident,Email
-Douglas County Hospital dba Alomere Health,MN,healthcare provider,49351,1/3/20,hacking/IT Incident,Email
-"InterMed, PA",ME,healthcare provider,33000,1/8/20,hacking/IT Incident,Email
-Fondren Orthopedic Group L.L.P.,TX,healthcare provider,30049,1/17/20,hacking/IT Incident,Network server
-"Native American Rehabilitation Association of the Northwest, Inc.",OR,healthcare provider,25187,1/3/20,hacking/IT Incident,Email
-Hospital Sisters Health System,IL,healthcare provider,16167,1/31/20,hacking/IT Incident,Email
-Spectrum Healthcare Partners,ME,healthcare provider,11308,1/10/20,hacking/IT Incident,Email
-Original Medicare,MD,health plan,9965,1/31/20,unauthorized access/disclosure,Other
-"Lawrenceville Internal Medicine Assoc, LLC",NJ,healthcare provider,8031,1/2/20,unauthorized access/disclosure,Email
-"Manchester Ophthalmology, LLC",CT,healthcare provider,6846,1/24/20,hacking/IT Incident,Network server
+affect,entity,type,,location,,date
+"1,290,670","MEDNAX Services, Inc.",Hacking/IT Incident,. ,Email,s were targeted. ,12/16/20
+"1,004,304","Dental Care Alliance, LLC",Hacking/IT Incident,. ,Network Server,s were targeted. ,12/8/20
+"484,157",Aetna ACE,Hacking/IT Incident,. ,Email,s were targeted. ,12/22/20
+"299,507",Allegheny Health Network,Hacking/IT Incident,. ,Network Server,s were targeted. ,12/3/20
+"261,054",AMITA Health,Hacking/IT Incident,. ,Network Server,s were targeted. ,12/3/20
+"149,804","Community Eye Care, LLC",Hacking/IT Incident,. ,Email,s were targeted. ,12/17/20
+"137,110",GenRx Pharmacy,Hacking/IT Incident,. ,Network Server,s were targeted. ,12/18/20
+"114,834","Wilmington Surgical Associates, P.A.",Hacking/IT Incident,. ,Network Server,s were targeted. ,12/17/20
+"73,825","Agency for Community Treatment Services, Inc.",Hacking/IT Incident,. ,Network Server,s were targeted. ,12/22/20
+"69,000",Sonoma Valley Healthcare District,Hacking/IT Incident,. ,Email,s were targeted. ,12/9/20

@@ -30,21 +30,54 @@ for (file in files) {
 
 # Reading these dates in requires a special format: %m/%d/%Y
 # Note the capitol Y for years as 0000
-dfopen <- read_csv("1_data/breach_report.csv", col_types = cols("Breach Submission Date" = col_date(format = "%m/%d/%Y")), na = "")
-dfclosed <- read_csv("1_data/breach_report(1).csv", col_types = cols("Breach Submission Date" = col_date(format = "%m/%d/%Y")), na = "")
-# add in the status just in case
-dfopen$status <- "open"
-dfclosed$status <- "closed"
+dfyear <- read_csv("2_output/combined.csv", na = "")
 
-# now append the two together
-df <- rbind(dfopen, dfclosed)
-
-# saving combined
-write_csv(df,'2_output/combined.csv',na="")
 
 head(df)
-
 summary(df)
+
+#------ 
+# Create our top ten list for the period we're examining
+# that's just a matter of slicing and sorting
+# first get the columns we want and rename them
+dflist <- select(dfyear,'Name of Covered Entity','State','Covered Entity Type','Individuals Affected','Breach Submission Date','Type of Breach','Location of Breached Information') 
+colnames(dflist) <- c('entity','state','org','affect','date','type','location')
+# filter for the period we want, sort by top number of indv affected and slice the top ten
+dften <- filter(dflist, (date >= '2020-01-01') & (date <= '2020-11-30') ) %>% arrange(desc(affect)) %>% slice(1:10)
+# save to csv 
+write_csv(dften,'2_output/topten_year.csv',na="")
+
+
+# now let's see what we can learn from this year
+# create columns of year, month and just year to prep for grouping
+dflist$yearmonth <- format(as.Date(dflist$date), "%Y-%m") 
+dflist$year <- format(as.Date(dflist$date), "%Y") 
+dflist$month <- format(as.Date(dflist$date), "%m") 
+
+dflist_dec <- filter(dflist,month<12)
+
+# let's exclude any reported in december
+# breaches by location
+dflocate <- dflist_dec %>% 
+  group_by(year,location) %>% 
+  summarize(count=n())
+# now pivot wide
+locate_wide <- pivot_wider(dflocate,id_cols = c("location"), 
+                                        names_from = "year", 
+                                        values_from = c("count") )
+write_csv(locate_wide,"2_output/location_year.csv",na="")
+
+# breaches by type
+dftype <- dflist_dec %>% 
+  group_by(year,type) %>% 
+  summarize(count=n())
+# now pivot wide
+type_wide <- pivot_wider(dftype,id_cols = c("type"), 
+                           names_from = "year", 
+                           values_from = c("count") )
+write_csv(type_wide,"2_output/type_year.csv",na="")
+
+
 
 # select just the columns we want and rename them
 dfa <- select(df,"Individuals Affected","Breach Submission Date")
@@ -81,30 +114,5 @@ tail(dfgroup)
 # save to csv 
 write_csv(dfgroup,'2_output/update.csv',na="")
 
-#------
-# breaches by year
-dfa$breachyear <- format(as.Date(dfa$breaches), "%Y") 
 
-# group by year-month, sort descending and filter out any NAs in individuals then summarise
-dfyear <- group_by(dfa, breachyear) %>% 
-  arrange(desc(breachyear)) %>% 
-  #filter(!is.na(account)) %>% 
-  summarise(countbr = n(),sumind = sum(individuals,na.rm = TRUE))
-
-# save to csv 
-write_csv(dfyear,'2_output/updatebyyear.csv',na="")
-
-#------ 
-# Finally, we create our top ten list for the month we're examining
-# that's just a matter of slicing and sorting
-# first get the columns we want and rename them
-dflist <- select(dfopen,'Name of Covered Entity','State','Covered Entity Type','Individuals Affected','Breach Submission Date','Type of Breach','Location of Breached Information') 
-colnames(dflist) <- c('entity','state','org','affect','date','type','location')
-
-
-# filter for the month we want, sort by top number of indv affected and slice the top ten
-dflist <- filter(dflist, (date >= '2020-12-01') & (date <= '2020-12-31') ) %>% arrange(desc(affect)) %>% slice(1:10)
-
-# save to csv 
-write_csv(dflist,'2_output/topten.csv',na="")
 
