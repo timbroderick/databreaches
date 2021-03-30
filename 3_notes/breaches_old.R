@@ -42,6 +42,9 @@ df <- rbind(dfopen, dfclosed)
 # saving combined
 write_csv(df,'2_output/combined.csv',na="")
 
+head(df)
+
+summary(df)
 
 # select just the columns we want and rename them
 dfa <- select(df,"Individuals Affected","Breach Submission Date")
@@ -51,7 +54,6 @@ colnames(dfa) <- c("individuals","breaches")
 # create columns of year, month to prep for grouping
 dfa$breachd <- format(as.Date(dfa$breaches), "%Y-%m") # need this to sort
 dfa$breachdate <- format(as.Date(dfa$breaches), "%b-%Y") # need this for presentation
-dfa$breachyear <- format(as.Date(dfa$breaches), "%Y") # need this for presentation
 
 # now take a look at what we have so far
 head(dfa)
@@ -66,95 +68,45 @@ head(dfa)
 
 
 # group by year-month, sort descending and filter out any NAs in individuals then summarise
-dfgroup <- group_by(dfa, breachyear,breachd,breachdate) %>% 
+dfgroup <- group_by(dfa, breachd,breachdate) %>% 
   arrange(desc(breachd)) %>% 
   #filter(!is.na(account)) %>% 
   summarise(countbr = n(),sumind = sum(individuals,na.rm = TRUE))
 
+# take a look at what we have
+head(dfgroup)
+tail(dfgroup)
+
+
 # save to csv 
 write_csv(dfgroup,'2_output/update.csv',na="")
 
+#------
+# breaches by year
+dfa$breachyear <- format(as.Date(dfa$breaches), "%Y") 
+
+# group by year-month, sort descending and filter out any NAs in individuals then summarise
+dfyear <- group_by(dfa, breachyear) %>% 
+  arrange(desc(breachyear)) %>% 
+  #filter(!is.na(account)) %>% 
+  summarise(countbr = n(),sumind = sum(individuals,na.rm = TRUE))
+
+# save to csv 
+write_csv(dfyear,'2_output/updatebyyear.csv',na="")
 
 #------ 
-# Finally, we create our top ten list for the year so far
+# Finally, we create our top ten list for the month we're examining
 # that's just a matter of slicing and sorting
 # first get the columns we want and rename them
 dflist <- select(dfopen,'Name of Covered Entity','State','Covered Entity Type','Individuals Affected','Breach Submission Date','Type of Breach','Location of Breached Information') 
 colnames(dflist) <- c('entity','state','org','affect','date','type','location')
 
 
-# filter for the year we want, sort by top number of indv affected and slice the top ten
-dflist <- filter(dflist, (date >= '2021-01-01') & (date <= '2021-02-28') ) %>% arrange(desc(affect)) %>% slice(1:10)
+# filter for the month we want, sort by top number of indv affected and slice the top ten
+dflist <- filter(dflist, (date >= '2021-02-01') & (date <= '2021-02-28') ) %>% arrange(desc(affect)) %>% slice(1:10)
 
 # save to csv 
 write_csv(dflist,'2_output/topten.csv',na="")
-
-
-
-#-----
-# now let's create a meme chart
-
-
-# first we want to grab just a few years
-df <- filter(dfgroup, (breachd >= '2019-01') & (breachd <= '2021-02') )
-# let's load our theme 
-source("3_notes/theme_mh.R")
-
-# now plot
-plot <- ggplot(df) +
-  aes(x = breachd, 
-      y = countbr,
-      fill = factor(breachyear)) +
-  geom_bar(stat="identity") +
-  # customizing our labels
-  labs(title = "Data breaches",
-       subtitle = "Number of breaches by month, through February",
-       caption = "Note: Numbers are preliminary. Only breaches affecting 500 or more individuals reported.\nSource: HHS, Office for Civil Rights",
-       x = NULL,
-       y = NULL,
-       fill = NULL) +
-  theme_mh() + # this is our theme, or styles
-  theme(panel.grid.major.x = element_blank(), # this turns off the x grid
-        legend.position = "none") + # this turns off the legend (we don't need one)
-  scale_colour_manual( alternating_colors, name="" ) + 
-  scale_fill_manual(values = alternating_colors, name="") +
-  scale_x_discrete(labels=c("Jan\n2019","","","","","","July\n2019","","","","","",
-                            "Jan\n2020","","","","","","July\n2020","","","","","",
-                            "Jan\n2021",""))
-
-
-# let's add some annotation
-# and an arrow 
-
-plot_annotate <- plot +
-  annotate("text", x = 10.5, y = 92, # placement of the text
-           label = "February had 40 breaches,\nup 15% from the previous year.\n1.2 million patients were affected.", 
-           size = 1.5, fontface = 'bold', lineheight=0.9) +
-  geom_curve( # start, end of line, and curve angle
-    size=0.15,
-    curvature = -0.4,
-    ncp = 3000,
-    arrow = arrow(length = unit(0.02, "npc")),
-    color="#83425e",
-    aes(x = 16.5,
-        y = 85,
-        xend = 26,
-        yend = 41) 
-  )
-
-plot_annotate
-
-# now let's save our plot
-width <- 2.43#4.5
-height <- 1.75 #4
-dev.new(width = width, height = height, unit = "in", noRStudioGD =T)
-plot_annotate
-ggsave("2_output/breaches.jpg", plot_annotate, width = width, height = height)
-
-
-
-
-
 
 
 
@@ -186,18 +138,3 @@ yrjoin$over10 <- yrjoin$countbr.x - yrjoin$countbr.y
 yrjoin$pover10_perc <- round((yrjoin$over10/yrjoin$countbr.x)*100,2)
 
 write_csv(yrjoin,"2_output/smalltargets.csv")
-
-
-
-#------
-# breaches by year
-dfa$breachyear <- format(as.Date(dfa$breaches), "%Y") 
-
-# group by year-month, sort descending and filter out any NAs in individuals then summarise
-dfyear <- group_by(dfa, breachyear) %>% 
-  arrange(desc(breachyear)) %>% 
-  #filter(!is.na(account)) %>% 
-  summarise(countbr = n(),sumind = sum(individuals,na.rm = TRUE))
-
-# save to csv 
-write_csv(dfyear,'2_output/updatebyyear.csv',na="")

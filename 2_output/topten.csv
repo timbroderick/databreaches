@@ -1,11 +1,11 @@
-affect,entity,type,,location,,date
-"1,290,670","MEDNAX Services, Inc.",Hacking/IT Incident,. ,Email,s were targeted. ,12/16/20
-"1,004,304","Dental Care Alliance, LLC",Hacking/IT Incident,. ,Network Server,s were targeted. ,12/8/20
-"484,157",Aetna ACE,Hacking/IT Incident,. ,Email,s were targeted. ,12/22/20
-"299,507",Allegheny Health Network,Hacking/IT Incident,. ,Network Server,s were targeted. ,12/3/20
-"261,054",AMITA Health,Hacking/IT Incident,. ,Network Server,s were targeted. ,12/3/20
-"149,804","Community Eye Care, LLC",Hacking/IT Incident,. ,Email,s were targeted. ,12/17/20
-"137,110",GenRx Pharmacy,Hacking/IT Incident,. ,Network Server,s were targeted. ,12/18/20
-"114,834","Wilmington Surgical Associates, P.A.",Hacking/IT Incident,. ,Network Server,s were targeted. ,12/17/20
-"73,825","Agency for Community Treatment Services, Inc.",Hacking/IT Incident,. ,Network Server,s were targeted. ,12/22/20
-"69,000",Sonoma Valley Healthcare District,Hacking/IT Incident,. ,Email,s were targeted. ,12/9/20
+entity,state,org,affect,date,type,location
+Florida Healthy Kids Corporation,FL,Health Plan,3500000,2021-01-29,Hacking/IT Incident,Network Server
+"American Anesthesiology, Inc.",NY,Healthcare Provider,1269074,2021-01-08,Hacking/IT Incident,Email
+Hendrick Health,TX,Healthcare Provider,640436,2021-01-15,Hacking/IT Incident,Network Server
+The Kroger Co.,OH,Healthcare Provider,368100,2021-02-19,Hacking/IT Incident,Network Server
+Roper St. Francis Healthcare,SC,Healthcare Provider,189761,2021-01-08,Hacking/IT Incident,Email
+"BW Homecare Holdings, LLC, in its capacity as the parent corporation of the Elara Caring single affiliated covered entity",TX,Healthcare Provider,100487,2021-02-24,Hacking/IT Incident,Email
+RF EYE PC dba Cochise Eye and Laser,AZ,Healthcare Provider,100000,2021-02-12,Hacking/IT Incident,Network Server
+"Gore Medical Management, LLC",GA,Healthcare Provider,79100,2021-02-08,Hacking/IT Incident,Desktop Computer
+Humana Inc,KY,Health Plan,62950,2021-02-22,Unauthorized Access/Disclosure,Network Server
+Nevada Orthopedic & Spine Center,NV,Healthcare Provider,50000,2021-02-01,Hacking/IT Incident,Network Server
