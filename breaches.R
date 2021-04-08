@@ -76,7 +76,7 @@ write_csv(dfgroup,'2_output/update.csv',na="")
 
 
 #------ 
-# Finally, we create our top ten list for the year so far
+# Next, we create our top ten list for the year so far
 # that's just a matter of slicing and sorting
 # first get the columns we want and rename them
 dflist <- select(dfopen,'Name of Covered Entity','State','Covered Entity Type','Individuals Affected','Breach Submission Date','Type of Breach','Location of Breached Information') 
@@ -84,7 +84,7 @@ colnames(dflist) <- c('entity','state','org','affect','date','type','location')
 
 
 # filter for the year we want, sort by top number of indv affected and slice the top ten
-dflist <- filter(dflist, (date >= '2021-01-01') & (date <= '2021-02-28') ) %>% arrange(desc(affect)) %>% slice(1:10)
+dflist <- filter(dflist, (date >= '2021-01-01') & (date <= '2021-03-31') ) %>% arrange(desc(affect)) %>% slice(1:10)
 
 # save to csv 
 write_csv(dflist,'2_output/topten.csv',na="")
@@ -96,7 +96,7 @@ write_csv(dflist,'2_output/topten.csv',na="")
 
 
 # first we want to grab just a few years
-df <- filter(dfgroup, (breachd >= '2019-01') & (breachd <= '2021-02') )
+df <- filter(dfgroup, (breachd >= '2019-01') & (breachd <= '2021-03') )
 # let's load our theme 
 source("3_notes/theme_mh.R")
 
@@ -107,28 +107,30 @@ plot <- ggplot(df) +
       fill = factor(breachyear)) +
   geom_bar(stat="identity") +
   # customizing our labels
-  labs(title = "Data breaches",
-       subtitle = "Number of breaches by month, through February",
+  labs(title = "Healthcare data breaches",
+       subtitle = "Number of breaches by month, through March",
        caption = "Note: Numbers are preliminary. Only breaches affecting 500 or more individuals reported.\nSource: HHS, Office for Civil Rights",
        x = NULL,
        y = NULL,
        fill = NULL) +
   theme_mh() + # this is our theme, or styles
-  theme(panel.grid.major.x = element_blank(), # this turns off the x grid
+  theme(panel.grid.major.x = element_blank(),
+        axis.ticks.x.bottom = element_line(size = .1),
+        axis.ticks.length.x = unit(-.07, "cm"),
         legend.position = "none") + # this turns off the legend (we don't need one)
   scale_colour_manual( alternating_colors, name="" ) + 
   scale_fill_manual(values = alternating_colors, name="") +
   scale_x_discrete(labels=c("Jan\n2019","","","","","","July\n2019","","","","","",
                             "Jan\n2020","","","","","","July\n2020","","","","","",
-                            "Jan\n2021",""))
+                            "Jan\n2021","",""))
 
 
 # let's add some annotation
 # and an arrow 
 
 plot_annotate <- plot +
-  annotate("text", x = 10.5, y = 92, # placement of the text
-           label = "February had 40 breaches,\nup 15% from the previous year.\n1.2 million patients were affected.", 
+  annotate("text", x = 11, y = 90, # placement of the text
+           label = "March's 57 breaches\nmarked a 37% increase\nfrom March of last year, and\na 58% increase since January.", 
            size = 1.5, fontface = 'bold', lineheight=0.9) +
   geom_curve( # start, end of line, and curve angle
     size=0.15,
@@ -138,20 +140,18 @@ plot_annotate <- plot +
     color="#83425e",
     aes(x = 16.5,
         y = 85,
-        xend = 26,
-        yend = 41) 
+        xend = 27,
+        yend = 57) 
   )
 
 plot_annotate
 
 # now let's save our plot
-width <- 2.43#4.5
+width <- 2.43  #4.5
 height <- 1.75 #4
 dev.new(width = width, height = height, unit = "in", noRStudioGD =T)
 plot_annotate
-ggsave("2_output/breaches.jpg", plot_annotate, width = width, height = height)
-
-
+ggsave("2_output/breaches_newsletter.jpg", plot_annotate, width = width, height = height)
 
 
 
