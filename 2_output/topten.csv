@@ -1,11 +1,11 @@
-entity,state,org,affect,date,type,location
-Florida Healthy Kids Corporation,FL,Health Plan,3500000,2021-01-29,Hacking/IT Incident,Network Server
-The Kroger Co.,OH,Healthcare Provider,1474284,2021-02-19,Hacking/IT Incident,Network Server
-"American Anesthesiology, Inc.",NY,Healthcare Provider,1269074,2021-01-08,Hacking/IT Incident,Email
-Health Net Community Solutions,CA,Health Plan,686556,2021-03-25,Hacking/IT Incident,Network Server
-Hendrick Health,TX,Healthcare Provider,640436,2021-01-15,Hacking/IT Incident,Network Server
-Health Net of California,CA,Health Plan,523709,2021-03-25,Hacking/IT Incident,Network Server
-Woodcreek Provider Services LLC,WA,Business Associate,207000,2021-03-05,Hacking/IT Incident,Network Server
-Roper St. Francis Healthcare,SC,Healthcare Provider,189761,2021-01-08,Hacking/IT Incident,Email
-Apple Valley Clinic,MN,Healthcare Provider,157939,2021-03-26,Hacking/IT Incident,Network Server
-Saint Alphonsus Health System,ID,Healthcare Provider,134906,2021-03-04,Hacking/IT Incident,Email
+entity,state,org,affect,date,aan,type,location
+Florida Healthy Kids Corp.,FL,health plan,"3,500,000",1/29/21,a,hacking/IT incident,Network server
+20/20 Eye Care Network,FL,business associate,"3,253,822",5/24/21,a,hacking/IT incident,Cloud server
+NEC Networks (CaptureRx),TX,business associate,"1,656,569",5/5/21,a,hacking/IT incident,Network server
+The Kroger Co.,OH,healthcare provider,"1,474,284",2/19/21,a,hacking/IT incident,Network server
+American Anesthesiology,NY,healthcare provider,"1,269,074",1/8/21,a,hacking/IT incident,Email
+Personal Touch Holding Corp.,NY,business associate,"753,107",3/26/21,a,hacking/IT incident,Network server
+Health Net Community Solutions,CA,health plan,"686,556",3/25/21,a,hacking/IT incident,Network server
+Hendrick Health,TX,healthcare provider,"640,436",1/15/21,a,hacking/IT incident,Network server
+Trinity Health,MI,business associate,"586,869",4/5/21,a,hacking/IT incident,Network server
+Health Net of California,CA,health plan,"523,709",3/25/21,a,hacking/IT incident,Network server

@@ -84,7 +84,7 @@ colnames(dflist) <- c('entity','state','org','affect','date','type','location')
 
 
 # filter for the year we want, sort by top number of indv affected and slice the top ten
-dflist <- filter(dflist, (date >= '2021-01-01') & (date <= '2021-03-31') ) %>% arrange(desc(affect)) %>% slice(1:10)
+dflist <- filter(dflist, (date >= '2021-01-01') & (date <= '2021-05-31') ) %>% arrange(desc(affect)) %>% slice(1:10)
 
 # save to csv 
 write_csv(dflist,'2_output/topten.csv',na="")
@@ -96,7 +96,7 @@ write_csv(dflist,'2_output/topten.csv',na="")
 
 
 # first we want to grab just a few years
-df <- filter(dfgroup, (breachd >= '2019-01') & (breachd <= '2021-03') )
+df <- filter(dfgroup, (breachd >= '2019-01') & (breachd <= '2021-05') )
 # let's load our theme 
 source("3_notes/theme_mh.R")
 
@@ -108,7 +108,7 @@ plot <- ggplot(df) +
   geom_bar(stat="identity") +
   # customizing our labels
   labs(title = "Healthcare data breaches",
-       subtitle = "Number of breaches by month, through March",
+       subtitle = "Number of breaches by month, through May",
        caption = "Note: Numbers are preliminary. Only breaches affecting 500 or more individuals reported.\nSource: HHS, Office for Civil Rights",
        x = NULL,
        y = NULL,
@@ -122,15 +122,15 @@ plot <- ggplot(df) +
   scale_fill_manual(values = alternating_colors, name="") +
   scale_x_discrete(labels=c("Jan\n2019","","","","","","July\n2019","","","","","",
                             "Jan\n2020","","","","","","July\n2020","","","","","",
-                            "Jan\n2021","",""))
+                            "Jan\n2021","","","",""))
 
-
+plot
 # let's add some annotation
 # and an arrow 
 
 plot_annotate <- plot +
-  annotate("text", x = 11, y = 90, # placement of the text
-           label = "March's 57 breaches\nmarked a 37% increase\nfrom March of last year, and\na 58% increase since January.", 
+  annotate("text", x = 13, y = 90, # placement of the text
+           label = "May 2021 had\nabout 70% more breaches\nthan the same period in 2019.", 
            size = 1.5, fontface = 'bold', lineheight=0.9) +
   geom_curve( # start, end of line, and curve angle
     size=0.15,
@@ -138,10 +138,10 @@ plot_annotate <- plot +
     ncp = 3000,
     arrow = arrow(length = unit(0.02, "npc")),
     color="#83425e",
-    aes(x = 16.5,
-        y = 85,
-        xend = 27,
-        yend = 57) 
+    aes(x = 18.75,
+        y = 83,
+        xend = 29,
+        yend = 54) 
   )
 
 plot_annotate
