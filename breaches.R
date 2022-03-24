@@ -52,6 +52,7 @@ colnames(dfa) <- c("individuals","breaches")
 dfa$breachd <- format(as.Date(dfa$breaches), "%Y-%m") # need this to sort
 dfa$breachdate <- format(as.Date(dfa$breaches), "%b-%Y") # need this for presentation
 dfa$breachyear <- format(as.Date(dfa$breaches), "%Y") # need this for presentation
+dfa$breachmonth <- format(as.Date(dfa$breaches), "%m") # need this for presentation
 
 # now take a look at what we have so far
 head(dfa)
@@ -75,16 +76,31 @@ dfgroup <- group_by(dfa, breachyear,breachd,breachdate) %>%
 write_csv(dfgroup,'2_output/update.csv',na="")
 
 
+# let's see how many breaches and individuals per year
+dfsum <- group_by(dfa,breachyear) %>% summarize(count=n(),
+                                                sumind = sum(individuals,na.rm = TRUE))
+
+# save that
+write_csv(dfsum,"2_output/byyear.csv",na="")
+
+
+# now let's select just for the year to date
+dfmonth <- dfa %>% filter(breachmonth < "03")
+unique(dfmonth$breachmonth)
+
+dfsum2 <- dfmonth %>% group_by(breachyear) %>% summarize(count=n(),
+                                                sumind = sum(individuals,na.rm = TRUE))
+
 #------ 
 # Next, we create our top ten list for the year so far
 # that's just a matter of slicing and sorting
 # first get the columns we want and rename them
-dflist <- select(dfopen,'Name of Covered Entity','State','Covered Entity Type','Individuals Affected','Breach Submission Date','Type of Breach','Location of Breached Information') 
+dflist <- select(df,'Name of Covered Entity','State','Covered Entity Type','Individuals Affected','Breach Submission Date','Type of Breach','Location of Breached Information') 
 colnames(dflist) <- c('entity','state','org','affect','date','type','location')
 
 
 # filter for the year we want, sort by top number of indv affected and slice the top ten
-dflist <- filter(dflist, (date >= '2021-01-01') & (date <= '2021-05-31') ) %>% arrange(desc(affect)) %>% slice(1:10)
+dflist <- filter(dflist, (date >= '2022-01-01') & (date <= '2022-2-28') ) %>% arrange(desc(affect)) %>% slice(1:10)
 
 # save to csv 
 write_csv(dflist,'2_output/topten.csv',na="")
@@ -96,19 +112,19 @@ write_csv(dflist,'2_output/topten.csv',na="")
 
 
 # first we want to grab just a few years
-df <- filter(dfgroup, (breachd >= '2019-01') & (breachd <= '2021-05') )
+dfch <- filter(dfgroup, (breachd >= '2019-02') & (breachd <= '2022-02') )
 # let's load our theme 
 source("3_notes/theme_mh.R")
 
 # now plot
-plot <- ggplot(df) +
+plot <- ggplot(dfch) +
   aes(x = breachd, 
       y = countbr,
       fill = factor(breachyear)) +
   geom_bar(stat="identity") +
   # customizing our labels
   labs(title = "Healthcare data breaches",
-       subtitle = "Number of breaches by month, through May",
+       subtitle = "Number of breaches by month, through February",
        caption = "Note: Numbers are preliminary. Only breaches affecting 500 or more individuals reported.\nSource: HHS, Office for Civil Rights",
        x = NULL,
        y = NULL,
@@ -120,28 +136,31 @@ plot <- ggplot(df) +
         legend.position = "none") + # this turns off the legend (we don't need one)
   scale_colour_manual( alternating_colors, name="" ) + 
   scale_fill_manual(values = alternating_colors, name="") +
-  scale_x_discrete(labels=c("Jan\n2019","","","","","","July\n2019","","","","","",
+  scale_x_discrete(labels=c("Feb\n2019","","","","","July\n2019","","","","","",
                             "Jan\n2020","","","","","","July\n2020","","","","","",
-                            "Jan\n2021","","","",""))
+                            "Jan\n2021","","","","","","July\n2021","","","","","",
+                            "Jan\n2022",""))
 
 plot
 # let's add some annotation
 # and an arrow 
 
 plot_annotate <- plot +
-  annotate("text", x = 13, y = 90, # placement of the text
-           label = "May 2021 had\nabout 70% more breaches\nthan the same period in 2019.", 
-           size = 1.5, fontface = 'bold', lineheight=0.9) +
+  annotate("text", x = 30, y = 92, # placement of the text
+           label = "Feb. saw a drop in both\nbreaches, individuals affected\nvs. Jan. 2022 and\nFeb. of last year.", 
+           size = 1.5, 
+           fontface = 'bold', 
+           lineheight=0.9) + 
   geom_curve( # start, end of line, and curve angle
     size=0.15,
     curvature = -0.4,
     ncp = 3000,
     arrow = arrow(length = unit(0.02, "npc")),
     color="#83425e",
-    aes(x = 18.75,
-        y = 83,
-        xend = 29,
-        yend = 54) 
+    aes(x = 34,
+        y = 81,
+        xend = 37,
+        yend = 49) 
   )
 
 plot_annotate
@@ -155,8 +174,17 @@ ggsave("2_output/breaches_newsletter.jpg", plot_annotate, width = width, height 
 
 
 
+# let's do a little geographcal analysis
 
+# first add in a year column
+df$breachyear <- format(as.Date(df$`Breach Submission Date`), "%Y") # need this for presentation
 
+#grab the regions
+regions <- read_csv("1_data/regions.csv")
+df <- merge(df,regions,by.x="State",by.y="st",all.x=TRUE)
+
+# save it out
+write_csv(df,"2_output/geoanalize.csv",na="")
 
 #------------
 #let's grab breaches under 10000
