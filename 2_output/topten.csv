@@ -1,11 +1,11 @@
-entity,state,org,affect,date,,type,location
-North Broward Hospital District (Broward Health),FL,healthcare provider,"1,351,431",1/2/22,a,hacking/IT Incident,Network server
-Morley Companies,MI,business associate,"521,046",2/1/22,a,hacking/IT Incident,Network server
-Monongalia Health System,WV,healthcare provider,"492,861",2/28/22,a,hacking/IT Incident,Network server
-Norwood Clinic,AL,healthcare provider,"228,000",2/25/22,a,hacking/IT Incident,"Electronic health records, Network server"
-Logan Health Medical Center,MT,healthcare provider,"213,543",2/22/22,a,hacking/IT Incident,Network server
-Medical Review Institute of America,UT,business associate,"134,571",1/7/22,a,hacking/IT Incident,Network server
-Medical Healthcare Solutions,MA,business associate,"133,997",1/22/22,a,hacking/IT Incident,Network server
-South Shore Hospital Corporation,IL,healthcare provider,"115,670",2/7/22,a,hacking/IT Incident,Network server
-Comprehensive Health Services,FL,healthcare provider,"106,752",2/15/22,a,hacking/IT Incident,Email
-Ravkoo,FL,healthcare provider,"105,000",1/3/22,a,hacking/IT Incident,Unspecified source
+entity,state,org,affect,date,type,location
+"Shields Health Care Group, Inc.",MA,Business Associate,2000000,2022-05-27,Hacking/IT Incident,Network Server
+North Broward Hospital District d/b/a Broward Health (“Broward Health”),FL,Healthcare Provider,1351431,2022-01-02,Hacking/IT Incident,Network Server
+Partnership HealthPlan of California,CA,Health Plan,854913,2022-05-18,Hacking/IT Incident,Network Server
+"Morley Companies, Inc.",MI,Business Associate,521046,2022-02-01,Hacking/IT Incident,Network Server
+Adaptive Health Integrations,ND,Healthcare Provider,510574,2022-04-11,Hacking/IT Incident,Network Server
+"Christie Business Holdings Company, P.C.",IL,Healthcare Provider,502869,2022-03-25,Hacking/IT Incident,Email
+"Monongalia Health System, Inc.",WV,Healthcare Provider,492861,2022-02-28,Hacking/IT Incident,Network Server
+ARcare,AR,Healthcare Provider,345353,2022-04-25,Hacking/IT Incident,Network Server
+"Super Care, Inc. dba SuperCare Health",CA,Healthcare Provider,318379,2022-03-28,Hacking/IT Incident,Network Server
+"Cytometry Specialists, Inc., d/b/a CSI Laboratories",GA,Healthcare Provider,312000,2022-03-25,Hacking/IT Incident,Network Server
