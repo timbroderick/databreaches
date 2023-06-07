@@ -14,6 +14,7 @@
 # in a folder called csv, that's in the same overall folder with this script
 
 
+
 # load libraries
 library(tidyverse)
 options("scipen" = 10) # this makes sure big numbers don't devolve into scientific notation
@@ -37,6 +38,11 @@ dfclosed$status <- "closed"
 
 # now append the two together
 df <- rbind(dfopen, dfclosed)
+
+df$breachd <- format(as.Date(df$`Breach Submission Date`), "%Y-%m") # need this to sort
+df$breachdate <- format(as.Date(df$`Breach Submission Date`), "%b-%Y") # need this for presentation
+df$breachyear <- format(as.Date(df$`Breach Submission Date`), "%Y") # need this for presentation
+df$breachmonth <- format(as.Date(df$`Breach Submission Date`), "%m") # need this for presentation
 
 # saving combined
 write_csv(df,'2_output/combined.csv',na="")
@@ -84,11 +90,13 @@ write_csv(dfsum,"2_output/byyear.csv",na="")
 
 
 # now let's select just for the year to date
-dfmonth <- dfa %>% filter(breachmonth < "05")
+dfmonth <- dfa %>% filter(breachmonth <= "04")
 unique(dfmonth$breachmonth)
 
 dfy2d <- dfmonth %>% group_by(breachyear) %>% summarize(count=n(),
                                                 sumind = sum(individuals,na.rm = TRUE))
+
+write_csv(dfy2d,"2_output/todate.csv",na="")
 
 #------ 
 # Next, we create our top ten list for the year so far
@@ -99,7 +107,7 @@ colnames(dflist) <- c('entity','state','org','affect','date','type','location')
 
 
 # filter for the year we want, sort by top number of indv affected and slice the top ten
-dflist <- filter(dflist, (date >= '2022-01-01') & (date <= '2022-5-30') ) %>% arrange(desc(affect)) %>% slice(1:10)
+dflist <- filter(dflist, (date >= '2023-01-01') & (date <= '2023-04-30') ) %>% arrange(desc(affect)) %>% slice(1:10)
 
 # save to csv 
 write_csv(dflist,'2_output/topten.csv',na="")
@@ -111,7 +119,7 @@ write_csv(dflist,'2_output/topten.csv',na="")
 
 
 # first we want to grab just a few years
-dfch <- filter(dfgroup, (breachd >= '2019-05') & (breachd <= '2022-05') )
+dfch <- filter(dfgroup, (breachd >= '2020-04') & (breachd <= '2023-04') )
 # let's load our theme 
 source("3_notes/theme_mh.R")
 
@@ -123,8 +131,8 @@ plot <- ggplot(dfch) +
   geom_bar(stat="identity") +
   # customizing our labels
   labs(title = "Healthcare data breaches",
-       subtitle = "Number of breaches by month, through May",
-       caption = "Note: Numbers are preliminary. Only breaches affecting 500 or more individuals reported.\nSource: HHS, Office for Civil Rights",
+       subtitle = "Number of breaches by month, through April 2023",
+       caption = "Note: Numbers are preliminary. Date refers to when breaches were reported, not when\nthey occurred. Only breaches affecting 500 or more individuals reported.\nSource: HHS, Office for Civil Rights",
        x = NULL,
        y = NULL,
        fill = NULL) +
@@ -135,10 +143,9 @@ plot <- ggplot(dfch) +
         legend.position = "none") + # this turns off the legend (we don't need one)
   scale_colour_manual( alternating_colors, name="" ) + 
   scale_fill_manual(values = alternating_colors, name="") +
-  scale_x_discrete(labels=c("","","July\n2019","","","","","",
-                            "Jan\n2020","","","","","","July\n2020","","","","","",
-                            "Jan\n2021","","","","","","July\n2021","","","","","",
-                            "Jan\n2022","","","",""))
+  scale_x_discrete(labels=c("","","","July","","","","","",
+                            "Jan\n2021","","","","","","July","","","","","",
+                            "Jan\n2022","","","","","","July","","","","","","Jan\n2023","","",""))
 
 
 plot
@@ -146,8 +153,8 @@ plot
 # and an arrow 
 
 plot_annotate <- plot +
-  annotate("text", x = 28, y = 92, # placement of the text
-           label = "The largest breach so far this year,\naffecting 2 million people,\nwas reported in May.", 
+  annotate("text", x = 25, y = 98, # placement of the text
+           label = "There were fewer breaches in April, 2023\ncompared to the same month in 2021 and 2022.",
            size = 1.5, 
            fontface = 'bold', 
            lineheight=0.9) + 
@@ -157,20 +164,27 @@ plot_annotate <- plot +
     ncp = 3000,
     arrow = arrow(length = unit(0.02, "npc")),
     color="#83425e",
-    aes(x = 33.4,
-        y = 82.4,
+    aes(x = 34.4,
+        y = 95,
         xend = 37,
-        yend = 60) 
+        yend = 48) 
   )
 
 plot_annotate
 
 # now let's save our plot
-width <- 2.43  #4.5
-height <- 1.75 #4
-dev.new(width = width, height = height, unit = "in", noRStudioGD =T)
-plot_annotate
-ggsave("2_output/breaches_newsletter.jpg", plot_annotate, width = width, height = height)
+#width <- 2.43  
+#height <- 1.75 
+#dev.new(width = width, height = height, unit = "in", noRStudioGD =T)
+# plot_annotate
+
+width <- 1200
+height <- 800
+units <-"px"
+dpi <- 400
+ggsave("2_output/breaches_newsletter.jpg", plot_annotate, 
+       width = width, height = height,
+       units=units,dp=dpi)
 
 
 
@@ -185,17 +199,33 @@ df <- merge(df,regions,by.x="State",by.y="st",all.x=TRUE)
 
 df2022 <- df %>% filter(breachyear=="2022")
 
-dfreg <- df2022 %>% group_by(region) %>% 
+dfreg22 <- df2022 %>% group_by(region) %>% 
   summarise(count=n(),
             sumind = sum(`Individuals Affected`,na.rm = TRUE))
 
-dfsubreg <- df2022 %>% group_by(subregion) %>% 
+dfsubreg22 <- df2022 %>% group_by(region, subregion) %>% 
+  summarise(count=n(),
+            sumind = sum(`Individuals Affected`,na.rm = TRUE))
+
+df2023 <- df %>% filter(breachyear=="2023")
+
+dfreg23 <- df2023 %>% group_by(region) %>% 
+  summarise(count=n(),
+            sumind = sum(`Individuals Affected`,na.rm = TRUE))
+
+dfsubreg23 <- df2023 %>% group_by(region, subregion) %>% 
   summarise(count=n(),
             sumind = sum(`Individuals Affected`,na.rm = TRUE))
 
 
 # save it out
 write_csv(df,"2_output/geoanalize.csv",na="")
+
+
+# type of breaches
+dftype <- df %>% group_by(breachyear,`Type of Breach`) %>% 
+  summarize(count=n())
+
 
 #------------
 #let's grab breaches under 10000

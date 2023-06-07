@@ -1,11 +1,11 @@
 entity,state,org,affect,date,type,location
-"Shields Health Care Group, Inc.",MA,Business Associate,2000000,2022-05-27,Hacking/IT Incident,Network Server
-North Broward Hospital District d/b/a Broward Health (“Broward Health”),FL,Healthcare Provider,1351431,2022-01-02,Hacking/IT Incident,Network Server
-Partnership HealthPlan of California,CA,Health Plan,854913,2022-05-18,Hacking/IT Incident,Network Server
-"Morley Companies, Inc.",MI,Business Associate,521046,2022-02-01,Hacking/IT Incident,Network Server
-Adaptive Health Integrations,ND,Healthcare Provider,510574,2022-04-11,Hacking/IT Incident,Network Server
-"Christie Business Holdings Company, P.C.",IL,Healthcare Provider,502869,2022-03-25,Hacking/IT Incident,Email
-"Monongalia Health System, Inc.",WV,Healthcare Provider,492861,2022-02-28,Hacking/IT Incident,Network Server
-ARcare,AR,Healthcare Provider,345353,2022-04-25,Hacking/IT Incident,Network Server
-"Super Care, Inc. dba SuperCare Health",CA,Healthcare Provider,318379,2022-03-28,Hacking/IT Incident,Network Server
-"Cytometry Specialists, Inc., d/b/a CSI Laboratories",GA,Healthcare Provider,312000,2022-03-25,Hacking/IT Incident,Network Server
+"Regal Medical Group,Lakeside Medical Organization, ADOC Acquisition, & Greater Covina Medical Group",CA,Healthcare Provider,3300638,2023-02-01,Hacking/IT Incident,Network Server
+"Cerebral, Inc",DE,Business Associate,3179835,2023-03-01,Unauthorized Access/Disclosure,Network Server
+"NationsBenefits Holdings, LLC",FL,Business Associate,3037303,2023-04-13,Hacking/IT Incident,Network Server
+ZOLL Services LLC,MA,Healthcare Provider,997097,2023-03-10,Hacking/IT Incident,Network Server
+"Community Health Systems Professional Services Corporations (CHSPSC), LLC",TN,Business Associate,962884,2023-03-16,Hacking/IT Incident,Network Server
+"CentraState Healthcare System, Inc.",NJ,Healthcare Provider,617901,2023-02-10,Hacking/IT Incident,Network Server
+"Brightline, Inc.",CA,Business Associate,462241,2023-04-07,Hacking/IT Incident,Network Server
+Cardiovascular Associates,AL,Healthcare Provider,441640,2023-02-03,Hacking/IT Incident,Network Server
+Santa Clara Family Health Plan,CA,Health Plan,276993,2023-03-30,Hacking/IT Incident,Network Server
+"Reventics, LLC",FL,Business Associate,250918,2023-02-10,Hacking/IT Incident,Network Server
